@@ -42,5 +42,9 @@ fit <- glmFit(y, design)
 lrt <- glmLRT(fit, coef=3)
 topTags(lrt)
 
+<head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.1/gist-embed.min.js"></script>
+</head>
 
 <code data-gist-id="5457662" data-gist-line="3,18"></code>
