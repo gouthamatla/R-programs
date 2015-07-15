@@ -43,4 +43,4 @@ lrt <- glmLRT(fit, coef=3)
 topTags(lrt)
 
 
-<code data-gist-id="5457662" data-gist-line="2"></code>
+<code data-gist-id="5457662" data-gist-line="3,18"></code>
