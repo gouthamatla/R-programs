@@ -46,3 +46,5 @@ write.table(top,file="DE_genes.txt", sep="\t")
 
 de <- rownames(top[top$FDR<0.01,])
 write.table((normCounts(set2)[de,]), file="1FDR_normCounts.txt", sep="\t")
+
+
