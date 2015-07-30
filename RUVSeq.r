@@ -33,18 +33,16 @@ Step 5: #normalise using empirical data set
 set2 <- RUVg(set, empirical, k=1)
 
 Step 6: #DE analysis
-design <- model.matrix(~subjects+treat+ W_1, data=pData(set2)) 
+design <- model.matrix(~subjects+W_1+treat, data=pData(set2)) 
 y <- DGEList(counts=counts(set), group=treat)
 y <- calcNormFactors(y, method="upperquartile")
 y <- estimateGLMCommonDisp(y, design)
 y <- estimateGLMTagwiseDisp(y, design) 
 fit <- glmFit(y, design)
 lrt <- glmLRT(fit, coef=3)
-topTags(lrt)
 
-<head>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.1/gist-embed.min.js"></script>
-</head>
+top <- topTags(lrt, n=nrow(y))$table
+write.table(top,file="DE_genes.txt", sep="\t")
 
-<code data-gist-id="5457662" data-gist-line="3,18"></code>
+de <- rownames(top[top$FDR<0.01,])
+write.table((normCounts(set2)[de,]), file="1FDR_normCounts.txt", sep="\t")
